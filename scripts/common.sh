@@ -68,8 +68,9 @@ systemctl restart containerd
 systemctl enable containerd
 
 # Add Kubernetes repo
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - >/dev/null 2>&1
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/dev/null 2>&1
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05
 
 # Install k8s packages
 until apt-get update
