@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
     master.vm.hostname  = "master-#{i}"
     master.vm.provision "shell", path: "./scripts/common.sh", env: {"KUBE_VERSION" => KUBE_VERSION}
     master.vm.provision "shell", path: "./scripts/master.sh", env: {"KUBE_VERSION" => KUBE_VERSION}
-    master.vm.network "private_network", ip: "192.168.56.#{i+10}", virtualbox__intnet: true
+    master.vm.network "private_network", ip: "192.168.56.#{i+10}"
     master.vm.provider "virtualbox" do |pmv|
       pmv.memory = 2048
     end
@@ -31,7 +31,7 @@ end
       node.vm.hostname  = "worker-#{i}"
       node.vm.provision "shell", path: "./scripts/common.sh", env: {"KUBE_VERSION" => KUBE_VERSION}
       node.vm.provision "shell", path: "./scripts/worker.sh"
-      node.vm.network "private_network", ip: "192.168.56.#{i+20}", virtualbox__intnet: true
+      node.vm.network "private_network", ip: "192.168.56.#{i+20}"
       node.vm.provider "virtualbox" do |pmv|
         pmv.memory = 2048
       end
